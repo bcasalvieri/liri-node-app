@@ -6,6 +6,7 @@ const keys = require("./keys.js");
 const axios = require("axios");
 const Spotify = require("node-spotify-api");
 const spotify = new Spotify(keys.spotify);
+const moment = require("moment");
 
 // Take in user input
 const command = process.argv[2];
@@ -34,9 +35,16 @@ function concertThis() {
     .then(function(response) {
       let data = response.data;
 
+      //
+
       for (i = 0; i < data.length; i++) {
+        // convert data[i].datetime to MM/DD/YYYY
+        let convertedDate = moment(data[i].datetime).format("MM/DD/YYYY");
+
         console.log(`Venue: ${data[i].venue.name}
-Location: ${data[i].venue.city}`)
+Location: ${data[i].venue.city}
+Date: ${convertedDate}
+`);
       }
     })
     .catch(function (error) {
