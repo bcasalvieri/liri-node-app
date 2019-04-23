@@ -8,8 +8,8 @@ This app is LIRI, Language Interpretation and Recognition Interface, a command l
 **Built with**
 - Node.js
 - Axios
-- Moment.js
 - DotEnv
+- Moment.js
 
 **APIs used**
 - OMDB API
