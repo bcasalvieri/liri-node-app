@@ -77,25 +77,27 @@ function spotifyThis() {
     .then(function(response) {
       const tracks = response.tracks.items;
 
-      // print results to terminal
-      tracks.forEach(song => console.log(`Artist(s): ${song.artists[0].name}
+      tracks.forEach(song => {
+        // print results to terminal
+        console.log(`Artist(s): ${song.artists[0].name}
 Song Name: ${song.name}
 Preview Song: ${song.preview_url}
 Album: ${song.album.name}
       
-`));
+`);
 
-      // add results to log.txt
-      tracks.forEach(song => fs.appendFile("log.txt", `Artist(s): ${song.artists[0].name}
+        // add results to log.txt
+        fs.appendFile("log.txt", `Artist(s): ${song.artists[0].name}
 Song Name: ${song.name}
 Preview Song: ${song.preview_url}
 Album: ${song.album.name}
             
 `, function(error) {
-        if (error) {
-          console.log(error);
-        };
-      }));
+          if (error) {
+            console.log(error);
+          };
+        });
+      });
     })
     .catch(function(err) {
       console.log(err);
