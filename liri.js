@@ -35,7 +35,7 @@ function concertThis() {
     .then(function(response) {
       const data = response.data;
 
-      for (i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         // convert data[i].datetime to MM/DD/YYYY
         let convertedDate = moment(data[i].datetime).format("MM/DD/YYYY");
 
@@ -68,13 +68,26 @@ Date: ${convertedDate}
 
 
 function spotifyThis() {
+  if (input === "") {
+    input = "The Sign Ace of Base"
+  };
+  
   spotify
     .search({
        type: 'track', 
        query: input
     })
     .then(function(response) {
-      console.log(response);
+      const tracks = response.tracks.items;
+
+      for (let i = 0; i < tracks.length; i++ ) {
+        console.log(`Artist(s): ${tracks[i].artists[0].name}
+Song Name: ${tracks[i].name}
+Preview Song: ${tracks[i].preview_url}
+Album: ${tracks[i].album.name}
+
+`)
+      };
     })
     .catch(function(err) {
       console.log(err);
