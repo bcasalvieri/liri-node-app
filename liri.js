@@ -54,9 +54,6 @@ Date: ${convertedDate}
 `, function(error) {
           if (error) {
             console.log(error);
-          }
-          else {
-            console.log("Content Added!");
           };
         });
       };
@@ -81,12 +78,25 @@ function spotifyThis() {
       const tracks = response.tracks.items;
 
       for (let i = 0; i < tracks.length; i++ ) {
+        // print results to terminal
         console.log(`Artist(s): ${tracks[i].artists[0].name}
 Song Name: ${tracks[i].name}
 Preview Song: ${tracks[i].preview_url}
 Album: ${tracks[i].album.name}
 
 `)
+
+        // add results to log.txt
+        fs.appendFile("log.txt", `Artist(s): ${tracks[i].artists[0].name}
+Song Name: ${tracks[i].name}
+Preview Song: ${tracks[i].preview_url}
+Album: ${tracks[i].album.name}
+ 
+`, function(error) {
+          if (error) {
+            console.log(error);
+          };
+        });
       };
     })
     .catch(function(err) {
@@ -128,9 +138,6 @@ Actors: ${response.data.Actors}
 `, function(error) {
         if (error) {
           console.log(error);
-        }
-        else {
-          console.log("Content Added!");
         };
       });
     })
