@@ -30,11 +30,17 @@ switch (command) {
 
 
 function concertThis() {
+  // if no user input, search for Backstreet Boys concerts
+  if (input === "") {
+    input = "Backstreet Boys";
+  };
+
   axios
     .get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp")
     .then(function(response) {
       const data = response.data;
 
+      // loop through data array
       data.forEach(concert => {
         // convert concert date to correct format
         let convertedDate = moment(concert.datetime).format("MM/DD/YYYY");
@@ -65,6 +71,7 @@ Date: ${convertedDate}
 
 
 function spotifyThis() {
+  // if no user input, search for The Sign by Ace of Base
   if (input === "") {
     input = "The Sign Ace of Base"
   };
@@ -106,6 +113,7 @@ Album: ${song.album.name}
 
 
 function movieThis() {
+  // if no user input, search for Mr. Nobody
   if (input === "") {
     input = "Mr. Nobody"
   };
