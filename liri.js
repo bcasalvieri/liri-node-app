@@ -10,7 +10,7 @@ const moment = require("moment");
 
 // Take in user input
 const command = process.argv[2];
-const input = process.argv.slice(3).join("+");
+const input = process.argv.slice(3).join(" ");
 
 // switch statement for commands
 switch (command) {
@@ -26,16 +26,14 @@ switch (command) {
   case "do-what-it-says":
     concertThis();
     break;
-}
+};
 
 
 function concertThis() {
   axios
     .get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp")
     .then(function(response) {
-      let data = response.data;
-
-      //
+      const data = response.data;
 
       for (i = 0; i < data.length; i++) {
         // convert data[i].datetime to MM/DD/YYYY
@@ -46,6 +44,41 @@ Location: ${data[i].venue.city}
 Date: ${convertedDate}
 `);
       }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+
+function spotifyThis() {
+  spotify
+    .search({
+       type: 'track', 
+       query: input
+    })
+    .then(function(response) {
+      console.log(response);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+};
+
+
+function movieThis() {
+  axios
+    .get("http://www.omdbapi.com/?apikey=trilogy&t=" + input)
+    .then(function(response) {
+      console.log(`Title: ${response.data.Title}
+Release Year: ${response.data.Year}
+IMDB Rating: ${response.data.imdbRating}
+Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}
+Country: ${response.data.Country}
+Language: ${response.data.Language}
+Plot: ${response.data.Plot}
+Actors: ${response.data.Actors}
+`);
     })
     .catch(function (error) {
       console.log(error);
