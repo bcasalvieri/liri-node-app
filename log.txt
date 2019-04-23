@@ -45,3 +45,32 @@ Venue: City of Rock
 Location: Rio De Janeiro
 Date: 09/27/2019
 
+Venue: Ziggo Dome
+Location: Amsterdam
+Date: 04/25/2019
+
+Venue: Ziggo Dome
+Location: Amsterdam
+Date: 04/26/2019
+
+Venue: City of Rock
+Location: Rio De Janeiro
+Date: 09/27/2019
+
+Venue: XS Nightclub
+Location: Las Vegas
+Date: 05/18/2019
+
+Venue: XS Nightclub
+Location: Las Vegas
+Date: 05/04/2019
+
+Title: The Boondock Saints
+Release Year: 1999
+IMDB Rating: 7.8
+Rotten Tomatoes Rating: 23%
+Country: USA, Canada
+Language: English, Spanish, Papiamento, Russian, Latin
+Plot: Two Irish Catholic brothers become vigilantes and wipe out Boston's criminal underworld in the name of God.
+Actors: Willem Dafoe, Sean Patrick Flanery, Norman Reedus, David Della Rocco
+

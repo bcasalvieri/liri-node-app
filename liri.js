@@ -39,6 +39,12 @@ function concertThis() {
         // convert data[i].datetime to MM/DD/YYYY
         let convertedDate = moment(data[i].datetime).format("MM/DD/YYYY");
 
+        console.log(`Venue: ${data[i].venue.name}
+Location: ${data[i].venue.city}
+Date: ${convertedDate}
+        
+`);
+
         fs.appendFile("log.txt", `Venue: ${data[i].venue.name}
 Location: ${data[i].venue.city}
 Date: ${convertedDate}
@@ -82,6 +88,17 @@ function movieThis() {
   axios
     .get("http://www.omdbapi.com/?apikey=trilogy&t=" + input)
     .then(function(response) {
+      console.log(`Title: ${response.data.Title}
+Release Year: ${response.data.Year}
+IMDB Rating: ${response.data.imdbRating}
+Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}
+Country: ${response.data.Country}
+Language: ${response.data.Language}
+Plot: ${response.data.Plot}
+Actors: ${response.data.Actors}
+
+`);
+
       fs.appendFile("log.txt", `Title: ${response.data.Title}
 Release Year: ${response.data.Year}
 IMDB Rating: ${response.data.imdbRating}
