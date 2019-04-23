@@ -24,7 +24,7 @@ switch (command) {
     movieThis();
     break;
   case "do-what-it-says":
-    concertThis();
+    doWhatItSays();
     break;
 };
 
@@ -87,4 +87,30 @@ Actors: ${response.data.Actors}
     .catch(function (error) {
       console.log(error);
     });
+};
+
+
+function doWhatItSays() {
+  fs.readFile("random.txt", "utf8", function(error, data) {
+    if (error) {
+      console.log(error);
+    };
+
+    let dataArr = data.split(",");
+    
+    command = dataArr[0];
+    input = dataArr[1];
+
+    switch (command) {
+      case "concert-this":
+        concertThis();
+        break;
+      case "spotify-this-song":
+        spotifyThis();
+        break;
+      case "movie-this":
+        movieThis();
+        break;
+    };
+  });
 };
