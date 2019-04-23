@@ -9,8 +9,8 @@ const spotify = new Spotify(keys.spotify);
 const moment = require("moment");
 
 // Take in user input
-const command = process.argv[2];
-const input = process.argv.slice(3).join(" ");
+let command = process.argv[2];
+let input = process.argv.slice(3).join(" ");
 
 // switch statement for commands
 switch (command) {
@@ -67,6 +67,10 @@ function spotifyThis() {
 
 
 function movieThis() {
+  if (input === "") {
+    input = "Mr. Nobody"
+  };
+
   axios
     .get("http://www.omdbapi.com/?apikey=trilogy&t=" + input)
     .then(function(response) {
