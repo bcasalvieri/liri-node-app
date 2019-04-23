@@ -35,28 +35,28 @@ function concertThis() {
     .then(function(response) {
       const data = response.data;
 
-      for (let i = 0; i < data.length; i++) {
-        // convert data[i].datetime to MM/DD/YYYY
-        let convertedDate = moment(data[i].datetime).format("MM/DD/YYYY");
+      data.forEach(concert => {
+        // convert concert date to correct format
+        let convertedDate = moment(concert.datetime).format("MM/DD/YYYY");
 
         // print results to terminal
-        console.log(`Venue: ${data[i].venue.name}
-Location: ${data[i].venue.city}
+        console.log(`Venue: ${concert.venue.name}
+Location: ${concert.venue.city}
 Date: ${convertedDate}
         
 `);
 
         // add results to log.txt
-        fs.appendFile("log.txt", `Venue: ${data[i].venue.name}
-Location: ${data[i].venue.city}
+        fs.appendFile("log.txt", `Venue: ${concert.venue.name}
+Location: ${concert.venue.city}
 Date: ${convertedDate}
-
+                
 `, function(error) {
           if (error) {
             console.log(error);
           };
         });
-      };
+      });
     })
     .catch(function (error) {
       console.log(error);
