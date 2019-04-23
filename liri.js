@@ -38,10 +38,10 @@ function concertThis() {
   axios
     .get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp")
     .then(function(response) {
-      const data = response.data;
+      const concertsArr = response.data;
 
       // loop through data array
-      data.forEach(concert => {
+      concertsArr.forEach(concert => {
         // convert concert date to correct format
         let convertedDate = moment(concert.datetime).format("MM/DD/YYYY");
 
@@ -82,9 +82,9 @@ function spotifyThis() {
        query: input
     })
     .then(function(response) {
-      const tracks = response.tracks.items;
+      const tracksArr = response.tracks.items;
 
-      tracks.forEach(song => {
+      tracksArr.forEach(song => {
         // print results to terminal
         console.log(`Artist(s): ${song.artists[0].name}
 Song Name: ${song.name}
@@ -121,27 +121,30 @@ function movieThis() {
   axios
     .get("http://www.omdbapi.com/?apikey=trilogy&t=" + input)
     .then(function(response) {
+
+      let movieData = response.data
+
       // print results to terminal
-      console.log(`Title: ${response.data.Title}
-Release Year: ${response.data.Year}
-IMDB Rating: ${response.data.imdbRating}
-Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}
-Country: ${response.data.Country}
-Language: ${response.data.Language}
-Plot: ${response.data.Plot}
-Actors: ${response.data.Actors}
+      console.log(`Title: ${movieData.Title}
+Release Year: ${movieData.Year}
+IMDB Rating: ${movieData.imdbRating}
+Rotten Tomatoes Rating: ${movieData.Ratings[1].Value}
+Country: ${movieData.Country}
+Language: ${movieData.Language}
+Plot: ${movieData.Plot}
+Actors: ${movieData.Actors}
 
 `);
 
       // add results to log.txt
-      fs.appendFile("log.txt", `Title: ${response.data.Title}
-Release Year: ${response.data.Year}
-IMDB Rating: ${response.data.imdbRating}
-Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}
-Country: ${response.data.Country}
-Language: ${response.data.Language}
-Plot: ${response.data.Plot}
-Actors: ${response.data.Actors}
+      fs.appendFile("log.txt", `Title: ${movieData.Title}
+Release Year: ${movieData.Year}
+IMDB Rating: ${movieData.imdbRating}
+Rotten Tomatoes Rating: ${movieData.Ratings[1].Value}
+Country: ${movieData.Country}
+Language: ${movieData.Language}
+Plot: ${movieData.Plot}
+Actors: ${movieData.Actors}
 
 `, function(error) {
         if (error) {
