@@ -39,12 +39,14 @@ function concertThis() {
         // convert data[i].datetime to MM/DD/YYYY
         let convertedDate = moment(data[i].datetime).format("MM/DD/YYYY");
 
+        // print results to terminal
         console.log(`Venue: ${data[i].venue.name}
 Location: ${data[i].venue.city}
 Date: ${convertedDate}
         
 `);
 
+        // add results to log.txt
         fs.appendFile("log.txt", `Venue: ${data[i].venue.name}
 Location: ${data[i].venue.city}
 Date: ${convertedDate}
@@ -88,6 +90,7 @@ function movieThis() {
   axios
     .get("http://www.omdbapi.com/?apikey=trilogy&t=" + input)
     .then(function(response) {
+      // print results to terminal
       console.log(`Title: ${response.data.Title}
 Release Year: ${response.data.Year}
 IMDB Rating: ${response.data.imdbRating}
@@ -99,6 +102,7 @@ Actors: ${response.data.Actors}
 
 `);
 
+      // add results to log.txt
       fs.appendFile("log.txt", `Title: ${response.data.Title}
 Release Year: ${response.data.Year}
 IMDB Rating: ${response.data.imdbRating}
@@ -124,16 +128,20 @@ Actors: ${response.data.Actors}
 
 
 function doWhatItSays() {
+  // read random.txt
   fs.readFile("random.txt", "utf8", function(error, data) {
     if (error) {
       console.log(error);
     };
 
+    // split string in random.txt into array
     let dataArr = data.split(",");
     
+    // reassign command and input variables using dataArr
     command = dataArr[0];
     input = dataArr[1];
 
+    // pass command and input variables through switch statement to run approriate function
     switch (command) {
       case "concert-this":
         concertThis();
